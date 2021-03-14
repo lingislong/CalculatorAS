@@ -9,35 +9,54 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    int soreNum1, soreNum2;
+    char op;
+    TextView textViewObj;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    }
-
-    protected int soreNum;
-    protected TextView textViewObj;
-
-    private void firstThing() {
+        textViewObj = findViewById(R.id.textViewResult);
+        textViewObj.setText("" + 0);
         soreNum = 0;
-        TextView textViewObj = findViewById(R.id.textViewResult);
+
     }
 
 
     public void funcNumber(View view) {
-        TextView textViewObj = findViewById(R.id.textViewResult);
 
-        soreNum = Integer.parseInt((String) textViewObj.getText()) * 10;
 
-        soreNum += Integer.parseInt((String) ((Button) view).getText());
+        soreNum1 = Integer.parseInt((String) textViewObj.getText()) * 10;
 
-        textViewObj.setText("" + soreNum);
+        soreNum1 += Integer.parseInt((String) ((Button) view).getText());
+
+        textViewObj.setText("" + soreNum1);
 
     }
 
     public void funcClearAll(View view) {
-        soreNum = 0;
-        //textViewObj.setText("" + 0);
+        soreNum1 = 0;
+        textViewObj.setText("" + 0);
+    }
+
+    public void funcEq(View view) {
+
+
+    }
+
+    public void funcOP(View view) {
+        op = (char) Integer.parseInt((String) ((Button) view).getText());
+        textViewObj.setText("" + 0);
+        switch (op) {
+            case '+':
+                soreNum1 += Integer.parseInt((String) ((Button) view).getText());
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + op);
+        }
+
+
     }
 }
